@@ -10,5 +10,9 @@ public class Product {
     boolean isAvailable;
     String companyName;
     String category;
+    //no-arg constructor
+    Product(){
+        System.out.println("Product Constructor Called");
+    }
 
 }
