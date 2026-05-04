@@ -1,22 +1,21 @@
 package com.java.oop.inheritance;
 
 public class PremiumCustomer extends Customer{
-    String membership;
-    int shippingCharges;
+     String membershipLevel;
 
-    public PremiumCustomer(int id, String name, long mobileNumber, String email, String address, String membership, int shippingCharge) {
-        super(id, name, mobileNumber, email, address);
-        this.membership = membership;
-        this.shippingCharges = shippingCharge;
+    public PremiumCustomer(int id, String name, long mobileNumber, String email, String address, String membership, int shippingCharges, String membershipLevel) {
+        super(id, name, mobileNumber, email, address, membership, shippingCharges);
+        this.membershipLevel = membershipLevel;
     }
+
     int calculateFinalPrice(int maxRetailPrice){
         int priceAfterDiscount = maxRetailPrice - (maxRetailPrice * 10/100);
         int finalPrice = priceAfterDiscount - (priceAfterDiscount * 20/100);
         return finalPrice + shippingCharges;
-
     }
-    void displayPremiumCustomerDetails(){
-        System.out.println(" Membership: " + membership );
-        System.out.println(" Shipping charges: " + shippingCharges);
+    @Override
+    public void displayDetails(){
+        super.displayDetails();
+        System.out.println(" Membership Level: " + membershipLevel);
     }
 }
