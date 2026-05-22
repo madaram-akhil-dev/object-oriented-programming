@@ -1,10 +1,8 @@
 package com.java.oop.collections.model;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
-public class Product {
+public class Product implements Comparable<Product> {
     private int id;
     private String name;
     private int maxRetailPrice;
@@ -92,7 +90,6 @@ public class Product {
     }
 
     public static void main(String[] args) {
-        Set< Product > products  = new HashSet<>();
         Product product1 = new Product();
         product1.setId(1111);
         product1.setName("Asus vivo book");
@@ -130,14 +127,45 @@ public class Product {
         product4.setCategory("Laptop");
         product4.setManufacturedYear(2023);
         // if given duplicate it adds to the set to avoid this we write equals() and hashcode() overridden method.
+        //HashSet does not maintain insertion order
+        Set< Product > hashSetProducts  = new HashSet<>();
+        hashSetProducts.add(product3);
+        hashSetProducts.add(product1);
+        hashSetProducts.add(product2);
+        hashSetProducts.add(product4);
 
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-        products.add(product4);
-        System.out.println(products.size());
-        System.out.println(products);
+        // LinkedHashSet maintains insertion order
+        Set<Product> linkedHashSetProducts = new LinkedHashSet<>();
+        linkedHashSetProducts.add(product3);
+        linkedHashSetProducts.add(product1);
+        linkedHashSetProducts.add(product2);
+        linkedHashSetProducts.add(product4);
 
+        //TreeSet manintains sorted order
+        Set<Product> treeSetProducts = new TreeSet<>();
+        treeSetProducts.add(product3);
+        treeSetProducts.add(product1);
+        treeSetProducts.add(product2);
+        treeSetProducts.add(product4);
+
+        System.out.println("HashSet Output:");
+        System.out.println(hashSetProducts);
+
+        System.out.println();
+
+        System.out.println("LinkedHashSet Output:");
+        System.out.println(linkedHashSetProducts);
+
+        System.out.println();
+
+        System.out.println("TreeSet Output:");
+        System.out.println(treeSetProducts);
+
+        System.out.println();
+
+        System.out.println("HashSet Size: " + hashSetProducts.size());
+        System.out.println("LinkedHashSet Size: " + linkedHashSetProducts.size());
+        System.out.println("TreeSet Size: " + treeSetProducts.size());
     }
 
     @Override
@@ -164,5 +192,9 @@ public class Product {
                 ", category='" + category + '\'' +
                 ", manufacturedYear=" + manufacturedYear +
                 '}';
+    }
+    @Override
+    public int compareTo(Product other) {
+        return Integer.compare(this.id, other.id);
     }
 }
