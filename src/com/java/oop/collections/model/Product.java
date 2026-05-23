@@ -1,5 +1,8 @@
 package com.java.oop.collections.model;
 
+import com.java.oop.collections.comparator.ProductIdComparator;
+import com.java.oop.collections.comparator.ProductPriceComparator;
+
 import java.util.*;
 
 public class Product implements Comparable<Product> {
@@ -141,12 +144,18 @@ public class Product implements Comparable<Product> {
         linkedHashSetProducts.add(product2);
         linkedHashSetProducts.add(product4);
 
-        //TreeSet manintains sorted order
-        Set<Product> treeSetProducts = new TreeSet<>();
+        //TreeSet maintains sorted order
+        Set<Product> treeSetProducts = new TreeSet<>(new ProductIdComparator());
         treeSetProducts.add(product3);
         treeSetProducts.add(product1);
         treeSetProducts.add(product2);
         treeSetProducts.add(product4);
+
+        Set<Product> priceSortedProducts = new TreeSet<>(new ProductPriceComparator());
+        priceSortedProducts.add(product3);
+        priceSortedProducts.add(product1);
+        priceSortedProducts.add(product2);
+        priceSortedProducts.add(product4);
 
         System.out.println("HashSet Output:");
         System.out.println(hashSetProducts);
@@ -160,6 +169,10 @@ public class Product implements Comparable<Product> {
 
         System.out.println("TreeSet Output:");
         System.out.println(treeSetProducts);
+
+        System.out.println();
+        System.out.println("Price Sorted TreeSet Output:");
+        System.out.println(priceSortedProducts);
 
         System.out.println();
 
