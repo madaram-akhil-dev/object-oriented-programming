@@ -2,12 +2,12 @@ package com.java.oop.collections;
 
 import com.java.oop.collections.model.Product;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ListTest {
     public static void main(String[] args) {
-        List<Product> products = new ArrayList<>();
+        List<Product> products = new LinkedList<>();
         Product product1 = new com.java.oop.collections.model.Product();
         product1.setId(1111);
         product1.setName("Asus vivo book");
